@@ -11,6 +11,7 @@ import {
   Wrapper,
   WrongsWrapper,
 } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 const Game = ({
   quizData,
@@ -57,6 +58,14 @@ const Game = ({
   }, [isCorrect, setCorrectScore, setWrongScore]);
 
   const showNotification = isCorrect !== null;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (wrongScore >= 3) {
+      navigate("/game-result");
+    }
+  }, [navigate, wrongScore]);
 
   return (
     <GameContainer>

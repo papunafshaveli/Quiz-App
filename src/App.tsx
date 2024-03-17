@@ -7,6 +7,7 @@ import { useGetGameData } from "./hooks/useGetGameData";
 import { useState } from "react";
 
 import quizBg from "./images/quiz-bg.jpg";
+import GameResult from "./pages/GameResult/GameResult";
 
 function App() {
   const { quizData, category, setCategory, getQuestion } = useGetGameData();
@@ -36,6 +37,7 @@ function App() {
             />
           }
         />
+        <Route path="/game-result" element={<GameResult />} />
       </Routes>
     </AppContainer>
   );
