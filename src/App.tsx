@@ -10,10 +10,10 @@ import quizBg from "./images/quiz-bg.jpg";
 
 function App() {
   const { quizData, category, setCategory, getQuestion } = useGetGameData();
-
   const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
+  const [wrongScore, setWrongScore] = useState(0);
+  const [correctScore, setCorrectScore] = useState(0);
 
-  console.log(quizData, category);
   return (
     <AppContainer>
       <Routes>
@@ -29,6 +29,10 @@ function App() {
               getQuestion={getQuestion}
               setIsCorrect={setIsCorrect}
               isCorrect={isCorrect}
+              wrongScore={wrongScore}
+              setWrongScore={setWrongScore}
+              correctScore={correctScore}
+              setCorrectScore={setCorrectScore}
             />
           }
         />
