@@ -1,7 +1,6 @@
 import { NotificationContainer } from "./styles";
 
 const SingleResult = ({ isCorrect }: { isCorrect: boolean | null }) => {
-  console.log(isCorrect);
   return (
     <NotificationContainer $isCorrect={isCorrect}>
       <h2>

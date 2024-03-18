@@ -1,23 +1,36 @@
-import styled from "styled-components";
-import { device } from "../../devSizes/devSizes";
+import { useNavigate } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
+import { Dispatch, SetStateAction } from "react";
+import { GameResultsContainer } from "./styles";
 
-const GameResult = () => {
-  return <GameResultsContainer>results</GameResultsContainer>;
+const GameResult = ({
+  correctScore,
+  setWrongScore,
+  setIsCorrect,
+  setCorrectScore,
+}: {
+  correctScore: number;
+  setWrongScore: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
+  setIsCorrect: React.Dispatch<React.SetStateAction<boolean | null>>;
+  setCorrectScore: Dispatch<SetStateAction<number>>;
+}) => {
+  const navigate = useNavigate();
+  const handleStartAgain = () => {
+    setWrongScore([
+      <FaHeart key={1} color="#007dc1" />,
+      <FaHeart key={2} color="#007dc1" />,
+      <FaHeart key={3} color="#007dc1" />,
+    ]);
+    setIsCorrect(null);
+    setCorrectScore(0);
+    navigate("/");
+  };
+  return (
+    <GameResultsContainer>
+      <h1>{`You Collected Correct ${correctScore} Answers!`}</h1>
+      <button onClick={handleStartAgain}>Start Again</button>
+    </GameResultsContainer>
+  );
 };
 
 export default GameResult;
-
-const GameResultsContainer = styled.div`
-  width: 340px;
-
-  background-color: #e73030;
-
-  padding: 15px;
-
-  border-radius: 5px;
-
-  @media ${device.tablet} {
-    width: 600px;
-    padding: 25px;
-  }
-`;

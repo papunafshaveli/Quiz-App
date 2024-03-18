@@ -28,8 +28,8 @@ const Game = ({
   getQuestion: () => void;
   isCorrect: boolean | null;
   setIsCorrect: React.Dispatch<React.SetStateAction<boolean | null>>;
-  wrongScore: number;
-  setWrongScore: Dispatch<SetStateAction<number>>;
+  wrongScore: JSX.Element[];
+  setWrongScore: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
   correctScore: number;
   setCorrectScore: Dispatch<SetStateAction<number>>;
 }) => {
@@ -53,7 +53,7 @@ const Game = ({
       setCorrectScore((prev: number) => prev + 1);
     }
     if (isCorrect === false) {
-      setWrongScore((prev: number) => prev + 1);
+      setWrongScore((prev: JSX.Element[]) => prev.slice(1));
     }
   }, [isCorrect, setCorrectScore, setWrongScore]);
 
@@ -62,7 +62,7 @@ const Game = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (wrongScore >= 3) {
+    if (wrongScore.length < 1) {
       navigate("/game-result");
     }
   }, [navigate, wrongScore]);
@@ -87,7 +87,9 @@ const Game = ({
         <Wrapper>
           <ScoreWrapper>
             <WrongsWrapper>
-              <span>wrong</span> <span>{wrongScore}</span>
+              {wrongScore.map((heart, index) => (
+                <span key={index}>{heart}</span>
+              ))}
             </WrongsWrapper>
             <CorrectsWrapper>
               <span>correct</span> <span>{correctScore}</span>

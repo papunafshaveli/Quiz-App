@@ -8,11 +8,16 @@ import { useState } from "react";
 
 import quizBg from "./images/quiz-bg.jpg";
 import GameResult from "./pages/GameResult/GameResult";
+import { FaHeart } from "react-icons/fa";
 
 function App() {
   const { quizData, category, setCategory, getQuestion } = useGetGameData();
   const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
-  const [wrongScore, setWrongScore] = useState(0);
+  const [wrongScore, setWrongScore] = useState<JSX.Element[]>([
+    <FaHeart color="#007dc1" />,
+    <FaHeart color="#007dc1" />,
+    <FaHeart color="#007dc1" />,
+  ]);
   const [correctScore, setCorrectScore] = useState(0);
 
   return (
@@ -37,7 +42,17 @@ function App() {
             />
           }
         />
-        <Route path="/game-result" element={<GameResult />} />
+        <Route
+          path="/game-result"
+          element={
+            <GameResult
+              correctScore={correctScore}
+              setWrongScore={setWrongScore}
+              setIsCorrect={setIsCorrect}
+              setCorrectScore={setCorrectScore}
+            />
+          }
+        />
       </Routes>
     </AppContainer>
   );
