@@ -10,7 +10,7 @@ export default GameResult;
 const GameResultsContainer = styled.div`
   width: 340px;
 
-  background-color: white;
+  background-color: #e73030;
 
   padding: 15px;
 

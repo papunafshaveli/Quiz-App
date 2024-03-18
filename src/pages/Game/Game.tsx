@@ -94,7 +94,9 @@ const Game = ({
             </CorrectsWrapper>
           </ScoreWrapper>
           <ButtonWrapper>
-            <button onClick={handleNextQuestion}>Next Question</button>
+            <button onClick={handleNextQuestion}>
+              {isCorrect !== null ? "Next Question" : "Change Question"}
+            </button>
           </ButtonWrapper>
         </Wrapper>
       </GameModal>

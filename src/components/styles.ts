@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import { device } from "../devSizes/devSizes";
 
-export const NotificationContainer = styled.div<{ isCorrect: boolean | null }>`
+export const NotificationContainer = styled.div<{ $isCorrect: boolean | null }>`
   display: flex;
   justify-content: center;
   align-items: center;
 
   width: 100%;
 
-  background-color: #e3b26d;
+  background-color: ${({ $isCorrect }) =>
+    $isCorrect === true ? "green" : "red"};
 
   padding: 15px;
 
@@ -20,7 +21,9 @@ export const NotificationContainer = styled.div<{ isCorrect: boolean | null }>`
     padding: 25px;
   }
 
-  h1 {
-    color: ${({ isCorrect }) => (isCorrect === true ? "green" : "red")};
+  h2 {
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 700;
   }
 `;

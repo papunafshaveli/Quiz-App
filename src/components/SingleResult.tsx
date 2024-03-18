@@ -3,14 +3,14 @@ import { NotificationContainer } from "./styles";
 const SingleResult = ({ isCorrect }: { isCorrect: boolean | null }) => {
   console.log(isCorrect);
   return (
-    <NotificationContainer isCorrect={isCorrect}>
-      <h1>
+    <NotificationContainer $isCorrect={isCorrect}>
+      <h2>
         {isCorrect === true
-          ? "You are Right"
+          ? "Correct Answer"
           : isCorrect === false
-          ? "You are Wrong"
+          ? "Wrong Answer"
           : ""}
-      </h1>
+      </h2>
     </NotificationContainer>
   );
 };

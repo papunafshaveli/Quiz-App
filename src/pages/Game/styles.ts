@@ -79,9 +79,13 @@ export const ButtonWrapper = styled.div`
     border: none;
     border-radius: 8px;
 
-    font-size: 1.8rem;
+    font-size: 1.6rem;
 
     cursor: pointer;
+
+    @media ${device.tablet} {
+      font-size: 2.4rem;
+    }
 
     &:hover {
       transform: scale(1);
