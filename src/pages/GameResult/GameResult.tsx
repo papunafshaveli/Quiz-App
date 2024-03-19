@@ -27,7 +27,9 @@ const GameResult = ({
   };
   return (
     <GameResultsContainer>
-      <h1>{`You Collected Correct ${correctScore} Answers!`}</h1>
+      <h1>
+        You Collected <span>{correctScore}</span> Correct Answers
+      </h1>
       <button onClick={handleStartAgain}>Start Again</button>
     </GameResultsContainer>
   );

@@ -11,7 +11,8 @@ import GameResult from "./pages/GameResult/GameResult";
 import { FaHeart } from "react-icons/fa";
 
 function App() {
-  const { quizData, category, setCategory, getQuestion } = useGetGameData();
+  const { quizData, category, setCategory, getQuestion, isLoading } =
+    useGetGameData();
   const [isCorrect, setIsCorrect] = useState<null | boolean>(null);
   const [wrongScore, setWrongScore] = useState<JSX.Element[]>([
     <FaHeart color="#007dc1" />,
@@ -39,6 +40,7 @@ function App() {
               setWrongScore={setWrongScore}
               correctScore={correctScore}
               setCorrectScore={setCorrectScore}
+              isLoading={isLoading}
             />
           }
         />

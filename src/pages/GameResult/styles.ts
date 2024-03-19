@@ -26,6 +26,10 @@ export const GameResultsContainer = styled.div`
     font-size: 2.4rem;
   }
 
+  span {
+    color: #05d26b;
+  }
+
   button {
     width: 70%;
 

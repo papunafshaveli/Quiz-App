@@ -22,6 +22,7 @@ const Game = ({
   setWrongScore,
   correctScore,
   setCorrectScore,
+  isLoading,
 }: {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   quizData: any;
@@ -32,6 +33,7 @@ const Game = ({
   setWrongScore: React.Dispatch<React.SetStateAction<JSX.Element[]>>;
   correctScore: number;
   setCorrectScore: Dispatch<SetStateAction<number>>;
+  isLoading: boolean;
 }) => {
   const answers = arrayShuffle([
     ...quizData.incorrect_answers,
@@ -69,39 +71,43 @@ const Game = ({
 
   return (
     <GameContainer>
-      <GameModal>
-        {showNotification ? (
-          <SingleResult isCorrect={isCorrect} />
-        ) : (
-          <>
-            <h1 dangerouslySetInnerHTML={{ __html: quizData.question }} />
-            {answers.map((answer, index) => (
-              <AnswerButton
-                key={index}
-                dangerouslySetInnerHTML={{ __html: answer }}
-                onClick={() => handleCheck(answer)}
-              />
-            ))}
-          </>
-        )}
-        <Wrapper>
-          <ScoreWrapper>
-            <WrongsWrapper>
-              {wrongScore.map((heart, index) => (
-                <span key={index}>{heart}</span>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <GameModal>
+          {showNotification ? (
+            <SingleResult isCorrect={isCorrect} />
+          ) : (
+            <>
+              <h1 dangerouslySetInnerHTML={{ __html: quizData.question }} />
+              {answers.map((answer, index) => (
+                <AnswerButton
+                  key={index}
+                  dangerouslySetInnerHTML={{ __html: answer }}
+                  onClick={() => handleCheck(answer)}
+                />
               ))}
-            </WrongsWrapper>
-            <CorrectsWrapper>
-              <span>correct</span> <span>{correctScore}</span>
-            </CorrectsWrapper>
-          </ScoreWrapper>
-          <ButtonWrapper>
-            <button onClick={handleNextQuestion}>
-              {isCorrect !== null ? "Next Question" : "Change Question"}
-            </button>
-          </ButtonWrapper>
-        </Wrapper>
-      </GameModal>
+            </>
+          )}
+          <Wrapper>
+            <ScoreWrapper>
+              <WrongsWrapper>
+                {wrongScore.map((heart, index) => (
+                  <span key={index}>{heart}</span>
+                ))}
+              </WrongsWrapper>
+              <CorrectsWrapper>
+                <span>correct</span> <span>{correctScore}</span>
+              </CorrectsWrapper>
+            </ScoreWrapper>
+            <ButtonWrapper>
+              <button onClick={handleNextQuestion}>
+                {isCorrect !== null ? "Next Question" : "Change Question"}
+              </button>
+            </ButtonWrapper>
+          </Wrapper>
+        </GameModal>
+      )}
     </GameContainer>
   );
 };
